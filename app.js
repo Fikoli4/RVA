@@ -14,5 +14,5 @@ app.post('/createTask', createTaskApi);
 app.use(express.static(path.join(process.cwd(), 'public')));
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`Server is running on: http://localhost:${PORT}`);
 });
