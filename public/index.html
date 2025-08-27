@@ -12,17 +12,34 @@
     </header>
 
     <section>
-        <h2>Unesi novog korisnika</h2>
-        <form id="userForm" id="newUserForm">
-            <label for="name">Ime:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <button id="newUserBtn">Dodaj korisnika</button>
-        </form>
+        <!-- Kreiraj novog korisnika -->
+        <div>
+            <h2>Unesi novog korisnika</h2>
+            <form id="userForm" id="newUserForm">
+                <label for="name">Ime:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <button id="newUserBtn">Dodaj korisnika</button>
+            </form>
+        </div>
+        <!-- Kreiraj novi task -->
+        <div>
+            <h2>Dodaj task korisniku</h2>
+            <form id="taskForm">
+                <label for="userSelect">Korisnik:</label>
+                <select id="userSelect" name="userId" required>
+                    <!-- JS will populate options here -->
+                    <option value="">Nesto</option>
+                </select>
+                <label for="title">Naslov zadatka:</label>
+                <input type="text" id="title" name="title" required>
+                <label for="description">Opis zadatka:</label>
+                <textarea id="description" name="description" required></textarea>
+                <button type="submit">Dodaj task</button>
+            </form>
+        </div>
     </section>
-
-    <!-- Dodaj input za taskove -->
 
     <!-- lista taskova -->
     <div id="tabela"> 
