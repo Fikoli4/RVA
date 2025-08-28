@@ -3,7 +3,6 @@ import sqlite3 from 'sqlite3';
 const database = sqlite3.verbose();
 const db = new database.Database(':memory:');
 
-// init database
 db.run(`CREATE TABLE users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT NOT NULL,
@@ -65,21 +64,20 @@ export const getAllTasks = () => {
       if (err) {
         reject(err);
       } else {
-        // Turn each row into a promise that fetches the user
+
         const promises = rows.map(row => {
           return new Promise((res, rej) => {
             db.get("SELECT * FROM users WHERE id = ?", [row.user_id], (err, user) => {
               if (err) {
                 rej(err);
               } else {
-                row.user = user; // attach user to the row
+                row.user = user; 
                 res(row);
               }
             });
           });
         });
 
-        // Wait for all user lookups to finish
         Promise.all(promises)
           .then(results => resolve(results))
           .catch(error => reject(error));
@@ -95,10 +93,9 @@ export const deleteTask = (taskId) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(this.changes); // number of rows deleted
+                resolve(this.changes);
             }
         });
         stmt.finalize();
     });
 }
-// db.close();

@@ -1,187 +1,71 @@
-/* ====== Global / reset ====== */
-*,
-*::before,
-*::after { box-sizing: border-box; }
-
-:root{
-  --bg: #f7f8fb;
-  --surface: #ffffff;
-  --surface-2: #f2f4f7;
-  --text: #0f172a;
-  --muted: #667085;
-  --border: #e4e7ec;
-  --accent: #2563eb;
-  --accent-2: #1d4ed8;
-  --success: #16a34a;
-  --danger: #e11d48;
-  --radius: 14px;
-  --shadow: 0 10px 25px rgba(16,24,40,0.08);
-}
-
-html, body { height: 100%; }
-
-body{
+body {
   margin: 0;
-  padding: 32px 20px;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  color: var(--text);
-  background: radial-gradient(1000px 400px at 20% -10%, #eef2ff 0%, rgba(238,242,255,0) 70%), var(--bg);
-  line-height: 1.45;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f8f9fa;
+  color: #333;
 }
 
-/* ====== Headings / text ====== */
-h1{
-  margin: 0 0 22px;
+h1 {
   text-align: center;
-  font-weight: 800;
-  font-size: clamp(26px, 3.8vw, 40px);
-  letter-spacing: .2px;
-}
-p{ font-size: 16px; color: var(--muted); margin: 0 0 10px; }
-
-/* ====== Sections (optional, ali korisno) ====== */
-.section{
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 18px;
-  margin: 12px auto;
-  max-width: 1100px;
-  box-shadow: var(--shadow);
+  margin-bottom: 20px;
 }
 
-/* ====== Form layout ====== */
-.form-grid{
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 12px 14px;
-  align-items: center;
+.section {
+  background: #fff;
+  padding: 15px;
+  margin: 15px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 900px;
 }
 
-label{ color: var(--muted); font-size: 14px; }
-
-input[type="text"],
-input[type="email"],
-select{
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  outline: none;
-  transition: border-color .15s, box-shadow .15s, transform .05s;
-}
-input:focus,
-select:focus{
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+label {
+  font-size: 14px;
+  margin-right: 6px;
 }
 
-/* ====== Buttons ====== */
-button, .btn{
-  padding: 10px 16px;
-  border-radius: 12px;
-  border: 0;
-  background: linear-gradient(180deg, var(--accent), var(--accent-2));
-  color: #fff;
-  font-weight: 600;
+input, select {
+  padding: 8px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  padding: 8px 14px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 8px 18px rgba(37,99,235,.25), inset 0 1px 0 rgba(255,255,255,.25);
-  transition: transform .06s ease, filter .15s ease, box-shadow .15s ease;
 }
-button:hover, .btn:hover{
-  filter: brightness(1.06);
-  box-shadow: 0 10px 22px rgba(37,99,235,.35), inset 0 1px 0 rgba(255,255,255,.3);
-}
-button:active, .btn:active{ transform: translateY(1px) scale(.99); }
-
-.btn--ghost{
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--border);
-  box-shadow: none;
-}
-.btn--danger{
-  background: linear-gradient(180deg, #fb7185, var(--danger));
-  box-shadow: 0 8px 18px rgba(225,29,72,.25);
+button:hover {
+  background: #0056b3;
 }
 
-/* ====== Tables ====== */
-table{
+table {
   width: 100%;
   border-collapse: collapse;
-  margin: 16px 0 0;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  margin-top: 15px;
+  background: white;
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: var(--shadow);
-  font-family: inherit;
 }
 
-thead th{
-  padding: 12px 14px;
+th, td {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
   text-align: left;
-  font-size: 12px;
-  letter-spacing: .4px;
-  color: #475467;
-  text-transform: uppercase;
-  background: linear-gradient(180deg, var(--surface-2), #eaeef3);
-  position: sticky; top: 0; z-index: 1;
-  border-bottom: 1px solid var(--border);
+  font-size: 14px;
 }
 
-tbody td{
-  padding: 12px 14px;
-  border-top: 1px solid var(--border);
+th {
+  background: #f1f1f1;
 }
-
-tbody tr:nth-child(even){ background: #fafcff; }
-tbody tr:hover{ background: #eef4ff; }
-
-/* mala zona za akcije u tabeli */
-.table-actions{ display: flex; gap: 8px; align-items: center; }
-.table-actions .btn{ padding: 6px 10px; font-size: 13px; border-radius: 10px; }
-
-/* ====== Helpers ====== */
-.container{ max-width: 1100px; margin: 0 auto; }
-hr{
-  border: 0; height: 1px; margin: 16px 0;
-  background: linear-gradient(90deg, rgba(100,116,139,0), rgba(100,116,139,.35), rgba(100,116,139,0));
+tr:nth-child(even) {
+  background: #fafafa;
 }
-.small{ font-size: 12px; color: var(--muted); }
-
-/* ====== Responsive ====== */
-@media (max-width: 760px){
-  body{ padding: 20px 14px; }
-  .form-grid{ grid-template-columns: 1fr; }
-  button, .btn{ width: 100%; }
-
-  /* “cards” tabela na mobilnom */
-  thead{ display: none; }
-  table, tbody, tr, td{ display: block; width: 100%; }
-  tbody tr{
-    margin: 12px 0;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--surface);
-  }
-  tbody td{
-    border: 0;
-    padding: 10px 12px;
-    border-bottom: 1px dashed var(--border);
-  }
-  tbody td:last-child{ border-bottom: 0; }
-  /* prikaži labelu kolone ako dodaš data-label na <td> */
-  tbody td::before{
-    content: attr(data-label);
-    display: block;
-    font-size: 11px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 4px;
-    letter-spacing: .3px;
-  }
+tr:hover {
+  background: #f0f8ff;
 }

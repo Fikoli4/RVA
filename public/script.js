@@ -1,4 +1,3 @@
-// new user form logic
 document.getElementById('userForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
@@ -40,7 +39,6 @@ async function populateUserSelect() {
     });
 }
 
-// new task form logic
 document.getElementById('taskForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const userId = document.getElementById('userSelect').value;
@@ -70,7 +68,6 @@ document.getElementById('taskForm').addEventListener('submit', async function(e)
     }
 });
 
-// populate task table
 populateTaskTable();
 async function populateTaskTable() {
     const res = await fetch('/tasks');
