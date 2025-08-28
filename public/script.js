@@ -85,7 +85,26 @@ async function populateTaskTable() {
             <td>${task.user ? `${task.user.name} (${task.user.email})` : 'Nepoznat korisnik'}</td>
             <td>${task.title}</td>
             <td>${task.description}</td>
+            <td>${new Date(task.created_at).toLocaleString()}</td>
+            <td><button onclick="deleteTask(${task.id})">Obrisi</button></td>
         `;
         tbody.appendChild(tr);
     });
+}
+
+async function deleteTask(taskId) {
+    try {
+        const response = await fetch(`/deleteTask/${taskId}`, {
+            method: 'DELETE'
+        });
+        if (response.ok) {
+            populateTaskTable();
+            alert('Task uspešno obrisan!');
+        } else {
+            const result = await response.json();
+            alert('Greška: ' + (result.error || 'Neuspešno brisanje.'));
+        }
+    } catch (error) {
+        alert('Greška: ' + error.message);
+    }
 }

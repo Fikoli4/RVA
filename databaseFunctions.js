@@ -87,4 +87,18 @@ export const getAllTasks = () => {
     });
   });
 };
+
+export const deleteTask = (taskId) => {
+    return new Promise((resolve, reject) => {
+        const stmt = db.prepare("DELETE FROM tasks WHERE id = ?");
+        stmt.run(taskId, function(err) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(this.changes); // number of rows deleted
+            }
+        });
+        stmt.finalize();
+    });
+}
 // db.close();

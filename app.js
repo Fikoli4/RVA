@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { createUserApi, createTaskApi, getUsersApi, getTasksApi } from './controller.js';
+import { createUserApi, createTaskApi, getUsersApi, getTasksApi, deleteTaskApi } from './controller.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +13,8 @@ app.get('/tasks', getTasksApi);
 
 app.post('/createUser', createUserApi);
 app.post('/createTask', createTaskApi);
+
+app.delete('/deleteTask/:id', deleteTaskApi);
 
 app.use(express.static(path.join(process.cwd(), 'public')));
 
