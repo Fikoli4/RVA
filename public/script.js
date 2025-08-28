@@ -60,6 +60,7 @@ document.getElementById('taskForm').addEventListener('submit', async function(e)
 
         const result = await response.json();
         if (response.ok) {
+            populateTaskTable();
             alert('Task uspešno dodat korisnicima!');
         } else {
             alert('Greška: ' + (result.error || 'Neuspešno dodavanje.'));
@@ -68,3 +69,23 @@ document.getElementById('taskForm').addEventListener('submit', async function(e)
         alert('Greška: ' + error.message);
     }
 });
+
+// populate task table
+populateTaskTable();
+async function populateTaskTable() {
+    const res = await fetch('/tasks');
+    const tasks = await res.json();
+    const tbody = document.getElementById('taskTableBody');
+    tbody.innerHTML = '';
+
+    tasks.forEach(task => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${task.id}</td>
+            <td>${task.user ? `${task.user.name} (${task.user.email})` : 'Nepoznat korisnik'}</td>
+            <td>${task.title}</td>
+            <td>${task.description}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+}

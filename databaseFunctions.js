@@ -59,4 +59,32 @@ export const getAllUsers = () => {
     });
 }
 
+export const getAllTasks = () => {
+  return new Promise((resolve, reject) => {
+    db.all("SELECT * FROM tasks", [], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        // Turn each row into a promise that fetches the user
+        const promises = rows.map(row => {
+          return new Promise((res, rej) => {
+            db.get("SELECT * FROM users WHERE id = ?", [row.user_id], (err, user) => {
+              if (err) {
+                rej(err);
+              } else {
+                row.user = user; // attach user to the row
+                res(row);
+              }
+            });
+          });
+        });
+
+        // Wait for all user lookups to finish
+        Promise.all(promises)
+          .then(results => resolve(results))
+          .catch(error => reject(error));
+      }
+    });
+  });
+};
 // db.close();

@@ -1,4 +1,4 @@
-import { createUser, createTask, getAllUsers } from './databaseFunctions.js';
+import { createUser, createTask, getAllUsers, getAllTasks } from './databaseFunctions.js';
 
 export const createUserApi = (req, res) => {
     // Logic to create a user
@@ -22,6 +22,14 @@ export const createTaskApi = (req, res) => {
 export const getUsersApi = (req, res) => {
     getAllUsers().then(users => {
         res.status(200).json(users);
+    }).catch(err => {
+        res.status(500).json({ error: err.message });
+    });
+}
+
+export const getTasksApi = (req, res) => {
+    getAllTasks().then(tasks => {
+        res.status(200).json(tasks);
     }).catch(err => {
         res.status(500).json({ error: err.message });
     });
